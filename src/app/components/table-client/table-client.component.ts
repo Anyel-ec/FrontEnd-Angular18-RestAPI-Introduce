@@ -3,20 +3,21 @@ import { ClientService } from '../../services/client.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { Client } from '../../models/client.model';
 
 @Component({
   selector: 'app-table-client',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, CommonModule],
+  imports: [FormsModule, HttpClientModule, CommonModule, RouterLink],
   providers: [ClientService],
   templateUrl: './table-client.component.html',
   styleUrl: './table-client.component.scss'
 })
 export class TableClientComponent {
-  public clients: any[] = [];
-  public selectedClient: any = null;
+  clients: Client[] = [];
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService) {}
 
   ngOnInit() {
     this.loadClients();
@@ -24,35 +25,18 @@ export class TableClientComponent {
 
   async loadClients() {
     try {
-      this.clients = await this.clientService.getAllClients() as any[];
+      this.clients = await this.clientService.getAllClients();
     } catch (error) {
-      console.error('Error al cargar clientes:', error);
+      console.error('Error al cargar la lista de clientes:', error);
     }
   }
 
   async deleteClient(id: number) {
     try {
       await this.clientService.deleteClient(id);
-      this.loadClients(); // Reload the client list after deletion
+      this.loadClients(); // Reload the client list
     } catch (error) {
-      console.error('Error al eliminar cliente:', error);
+      console.error('Error al eliminar el cliente:', error);
     }
   }
-
-  selectClient(client: any) {
-    this.selectedClient = { ...client }; // Create a copy of the selected client
-  }
-
-  async updateClient() {
-    if (this.selectedClient) {
-      try {
-        await this.clientService.updateClient(this.selectedClient.id, this.selectedClient);
-        this.loadClients(); // Reload the client list after update
-        this.selectedClient = null; // Clear the selected client
-      } catch (error) {
-        console.error('Error al actualizar cliente:', error);
-      }
-    }
-  }
-
 }

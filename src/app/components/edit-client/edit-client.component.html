@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInputNombre" placeholder="Nombre" [(ngModel)]="nombre" />
+        <label for="floatingInputNombre">Nombre</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInputCedula" placeholder="Cédula de Identidad" [(ngModel)]="cedula" />
+        <label for="floatingInputCedula">Cédula de Identidad</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInputTelefono" placeholder="Teléfono" [(ngModel)]="telefono" />
+        <label for="floatingInputTelefono">Teléfono</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInputCorreo" placeholder="Correo" [(ngModel)]="correo" />
+        <label for="floatingInputCorreo">Correo</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInputDireccion" placeholder="Dirección" [(ngModel)]="direccion" />
+        <label for="floatingInputDireccion">Dirección</label>
+      </div>
+      <button class="btn btn-primary" (click)="saveCliente()">Guardar</button>
+    </div>
+  </div>
+</div>
