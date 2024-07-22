@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'crud_angular_node' title`, () => {
+  it(`should have the 'factura_crud' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('crud_angular_node');
+    expect(app.title).toEqual('factura_crud');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, crud_angular_node');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, factura_crud');
   });
 });
