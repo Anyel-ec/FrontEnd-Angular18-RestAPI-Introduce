@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { SearchClientComponent } from './components/search-client/search-client.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
   {
@@ -11,4 +12,8 @@ export const routes: Routes = [
     path: 'insertar-cliente',
     component: AddClientComponent,
   },
+  {
+    path: 'inicio',
+    component: HomeComponent,
+  }
 ];

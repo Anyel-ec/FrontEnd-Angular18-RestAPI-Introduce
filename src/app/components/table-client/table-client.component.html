@@ -1,0 +1,63 @@
+<div class="container">
+  <h2 class="my-4">Lista de Clientes</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Cédula</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.nombre }}</td>
+        <td>{{ client.cedula }}</td>
+        <td>{{ client.telefono }}</td>
+        <td>{{ client.direccion }}</td>
+        <td>{{ client.correo }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2" (click)="selectClient(client)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteClient(client.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedClient" class="mt-4">
+    <h2>Editar Cliente</h2>
+    <form (ngSubmit)="updateClient()" class="form-group">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input id="nombre" [(ngModel)]="selectedClient.nombre" name="nombre" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="cedula" class="form-label">Cédula:</label>
+        <input id="cedula" [(ngModel)]="selectedClient.cedula" name="cedula" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono:</label>
+        <input id="telefono" [(ngModel)]="selectedClient.telefono" name="telefono" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="direccion" class="form-label">Dirección:</label>
+        <input id="direccion" [(ngModel)]="selectedClient.direccion" name="direccion" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo:</label>
+        <input id="correo" [(ngModel)]="selectedClient.correo" name="correo" class="form-control" />
+      </div>
+
+      <button type="submit" class="btn btn-success me-2">Actualizar</button>
+      <button type="button" class="btn btn-secondary" (click)="selectedClient = null">Cancelar</button>
+    </form>
+  </div>
+</div>
