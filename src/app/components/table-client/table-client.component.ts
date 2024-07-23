@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Client } from '../../models/client.model';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-table-client',
   standalone: true,
@@ -23,6 +23,24 @@ export class TableClientComponent {
     this.loadClients();
   }
 
+  confirmDeleteClient(id: number) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteClient(id);
+      }
+    });
+  }
+
+
   async loadClients() {
     try {
       this.clients = await this.clientService.getAllClients();
@@ -34,8 +52,18 @@ export class TableClientComponent {
   async deleteClient(id: number) {
     try {
       await this.clientService.deleteClient(id);
+      Swal.fire(
+        '¡Eliminado!',
+        'El cliente ha sido eliminado.',
+        'success'
+      );
       this.loadClients(); // Reload the client list
     } catch (error) {
+      Swal.fire(
+        'Error',
+        'Hubo un problema al eliminar el cliente.',
+        'error'
+      );
       console.error('Error al eliminar el cliente:', error);
     }
   }

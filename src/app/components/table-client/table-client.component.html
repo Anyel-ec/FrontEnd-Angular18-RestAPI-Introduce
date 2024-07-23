@@ -21,7 +21,7 @@
             <td>{{ client.direccion }}</td>
             <td>
               <a [routerLink]="['/editar-cliente', client.id]" class="btn btn-warning btn-sm">Editar</a>
-              <button class="btn btn-danger btn-sm" (click)="deleteClient(client.id)">Eliminar</button>
+              <button class="btn btn-danger btn-sm" (click)="confirmDeleteClient(client.id)">Eliminar</button>
             </td>
           </tr>
         </tbody>
